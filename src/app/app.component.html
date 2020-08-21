@@ -1,0 +1,82 @@
+<div class="container-fluid mb-4 mt-2 logo bg-light">
+  <img
+    src="https://i.pinimg.com/originals/54/2e/c6/542ec68513d564e12f422d96d739da49.png"
+    alt="logo"
+  />
+  <h2>Angular Fitness App</h2>
+</div>
+
+<div class="container-fluid navbar-box">
+  <nav class="navbar navbar-expand-lg">
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-toggle="collapse"
+      data-target="#navbarNav"
+      aria-controls="navbarNav"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon text-light">X</span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item active">
+          <a class="nav-link" routerLink="/home"
+            >Home <span class="sr-only">(current)</span></a
+          >
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/place-fitness-trainer-appointment"
+            >Place Appointment</a
+          >
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/view-appointment"
+            >View Appointment</a
+          >
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/contact-us">Contact US</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</div>
+
+<div class="container-fluid mt-4">
+  <div class="row">
+    <div class="col-md-2 sidebar-box p-2">
+      <ul>
+        <li>
+          <a class="nav-link" routerLink="/home"
+            >Home <span class="sr-only">(current)</span></a
+          >
+        </li>
+        <hr />
+
+        <li>
+          <a class="nav-link" routerLink="/place-fitness-trainer-appointment"
+            >Place Appointment</a
+          >
+        </li>
+        <hr />
+        <li>
+          <a class="nav-link" routerLink="/view-appointment"
+            >View Appointment</a
+          >
+        </li>
+        <hr />
+        <li>
+          <a class="nav-link" routerLink="/contact-us">Contact US</a>
+        </li>
+        <hr />
+      </ul>
+    </div>
+
+    <div class="col-md-10 bg-light p-2 center">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>

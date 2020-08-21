@@ -1,0 +1,50 @@
+/* You can add global styles to this file, and also import other style files */
+.navbar-box,
+.sidebar-box {
+  background-color: rgb(96, 96, 138);
+  color: white;
+}
+.navbar-box ul li a,
+.sidebar-box a {
+  color: white;
+}
+.sidebar-box ul li {
+  list-style-type: none;
+}
+
+.center {
+  align-items: center;
+}
+
+.address-box {
+  border: 1px solid black;
+  padding: 2px;
+}
+
+.edit-form {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  display: flex-box;
+  height: 100%;
+  width: 100%;
+  justify-content: center;
+  backdrop-filter: opacity(20%);
+  padding-left: 5px;
+  background-color: white;
+}
+
+.logo {
+  height: 6rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.logo img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  background: transparent;
+}

@@ -1,0 +1,483 @@
+<div>
+  <h2>View Appointments</h2>
+</div>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th class="h1">Sl NO</th>
+      <th class="h2">Name</th>
+      <th class="h3">Address</th>
+      <th class="h4">City</th>
+      <th class="h5">Package</th>
+      <th class="h6">Trainer Preference</th>
+      <th class="h7">Phone</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let appointment of appointmentList; let i = index">
+      <td>{{ i + 1 }}</td>
+      <td>{{ appointment.firstname }} {{ appointment.lastname }}</td>
+      <td>{{ appointment.streetaddress }}</td>
+      <td>{{ appointment.city }}</td>
+      <td>{{ appointment.package }}</td>
+      <td>{{ appointment.trainerpreference }}</td>
+      <td>{{ appointment.phonenumber }}</td>
+      <td>
+        <button
+          class="btn btn-primary"
+          (click)="showEditScreen(appointment.id)"
+          data-toggle="modal"
+          data-target="#showForm"
+          type="button"
+        >
+          EDIT
+        </button>
+        <button
+          type="button"
+          class="btn btn-primary"
+          (click)="deleteAppointment(appointment.id)"
+        >
+          DELETE
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<div *ngIf="showEditForm" class="edit-form pr-2">
+  <h2>Edit Appointment</h2>
+  <form [formGroup]="editForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="firstname" class="col-form-label">First Name :</label>
+      <div class="col-sm-8">
+        <input
+          autofocus
+          type="text"
+          class="form-control"
+          pattern="^[a-zA-Z]+$"
+          formControlName="firstname"
+          [ngClass]="{
+            'is-invalid':
+              editForm.controls.firstname.touched &&
+              editForm.controls.firstname.invalid
+          }"
+        />
+        <div
+          *ngIf="
+            editForm.controls.firstname.invalid &&
+            editForm.controls.firstname.touched
+          "
+        >
+          <small
+            *ngIf="editForm.controls.firstname.errors?.required"
+            class="text-danger"
+            >Firstname is required.</small
+          >
+          <small
+            *ngIf="editForm.controls.firstname.errors?.pattern"
+            class="text-danger"
+            >Firstname can only contain alphabets.</small
+          >
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="lastname" class="col-form-label">Last Name :</label>
+      <div class="col-sm-8">
+        <input
+          type="text"
+          class="form-control"
+          pattern="^[a-zA-Z]+$"
+          formControlName="lastname"
+          [ngClass]="{
+            'is-invalid':
+              editForm.controls.lastname.touched &&
+              editForm.controls.lastname.invalid
+          }"
+        />
+        <div
+          *ngIf="
+            editForm.controls.lastname.invalid &&
+            editForm.controls.lastname.touched
+          "
+        >
+          <small
+            *ngIf="editForm.controls.lastname.errors?.required"
+            class="text-danger"
+            >Lastname is required.</small
+          >
+          <small
+            *ngIf="editForm.controls.lastname.errors?.pattern"
+            class="text-danger"
+            >Lastname can only contain alphabets.</small
+          >
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="age" class="col-form-label">Age :</label>
+      <div class="col-sm-8">
+        <input
+          type="number"
+          class="form-control"
+          formControlName="age"
+          [ngClass]="{
+            'is-invalid':
+              editForm.controls.age.touched && editForm.controls.age.invalid
+          }"
+        />
+        <div
+          *ngIf="editForm.controls.age.invalid && editForm.controls.age.touched"
+        >
+          <small
+            *ngIf="editForm.controls.age.errors?.required"
+            class="text-danger"
+            >Age is required.</small
+          >
+          <small *ngIf="editForm.controls.age.errors" class="text-danger"
+            >Please enter age between 18 to 60 years.
+          </small>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="phoneNumber" class="col-form-label">Phone Number</label>
+      <div class="col-sm-8">
+        <input
+          type="number"
+          class="form-control"
+          formControlName="phonenumber"
+          pattern="^\d{10}$"
+          [ngClass]="{
+            'is-invalid':
+              editForm.controls.phonenumber.touched &&
+              editForm.controls.phonenumber.invalid
+          }"
+        />
+        <div
+          *ngIf="
+            editForm.controls.phonenumber.invalid &&
+            editForm.controls.phonenumber.touched
+          "
+        >
+          <small
+            *ngIf="editForm.controls.phonenumber.errors?.required"
+            class="text-danger"
+            >Phone Number is required.</small
+          >
+          <small
+            *ngIf="editForm.controls.phonenumber.errors?.pattern"
+            class="text-danger"
+            >Please enter a 10 digit phone number.</small
+          >
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="email" class="col-form-label">Email :</label>
+      <div class="col-sm-8">
+        <input
+          type="email"
+          class="form-control"
+          formControlName="email"
+          pattern="^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$"
+          [ngClass]="{
+            'is-invalid':
+              editForm.controls.email.touched && editForm.controls.email.invalid
+          }"
+        />
+        <div
+          *ngIf="
+            editForm.controls.email.invalid && editForm.controls.email.touched
+          "
+        >
+          <small
+            *ngIf="editForm.controls.email.errors?.required"
+            class="text-danger"
+            >Email is required.</small
+          >
+          <small
+            *ngIf="editForm.controls.email.errors?.pattern"
+            class="text-danger"
+            >Please enter a valid email address.</small
+          >
+        </div>
+      </div>
+    </div>
+
+    <fieldset class="address-box">
+      <div class="form-group">
+        <label for="streetaddress" class="col-form-label"
+          >Street Address :</label
+        >
+        <div class="col-sm-4">
+          <input
+            type="text"
+            class="form-control"
+            formControlName="streetaddress"
+            [ngClass]="{
+              'is-invalid':
+                editForm.controls.streetaddress.touched &&
+                editForm.controls.streetaddress.invalid
+            }"
+          />
+          <div
+            *ngIf="
+              editForm.controls.streetaddress.invalid &&
+              editForm.controls.streetaddress.touched
+            "
+          >
+            <small
+              *ngIf="editForm.controls.streetaddress.errors?.required"
+              class="text-danger"
+              >Street address is required</small
+            >
+          </div>
+        </div>
+
+        <label for="city" class="col-form-label">City :</label>
+        <div class="col-sm-4">
+          <input
+            type="text"
+            class="form-control"
+            formControlName="city"
+            pattern="^[a-zA-Z]+$"
+            [ngClass]="{
+              'is-invalid':
+                editForm.controls.city.touched && editForm.controls.city.invalid
+            }"
+          />
+          <div
+            *ngIf="
+              editForm.controls.city.invalid && editForm.controls.city.touched
+            "
+          >
+            <small
+              *ngIf="editForm.controls.city.errors?.required"
+              class="text-danger"
+              >City name is required.</small
+            >
+            <small
+              *ngIf="editForm.controls.city.errors?.pattern"
+              class="text-danger"
+              >City name can only contain alphabets.</small
+            >
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="state" class="col-form-label">State :</label>
+        <div class="col-sm-4">
+          <input
+            type="text"
+            class="form-control"
+            formControlName="state"
+            pattern="^[a-zA-Z]+$"
+            [ngClass]="{
+              'is-invalid':
+                editForm.controls.state.touched &&
+                editForm.controls.state.invalid
+            }"
+          />
+          <div
+            *ngIf="
+              editForm.controls.state.invalid && editForm.controls.state.touched
+            "
+          >
+            <small
+              *ngIf="editForm.controls.state.errors?.required"
+              class="text-danger"
+              >State name is required.</small
+            >
+            <small
+              *ngIf="editForm.controls.state.errors?.pattern"
+              class="text-danger"
+              >State name can only contain alphabets.</small
+            >
+          </div>
+        </div>
+
+        <label for="country" class="col-form-label">Country :</label>
+        <div class="col-sm-4">
+          <input
+            type="text"
+            class="form-control"
+            formControlName="country"
+            pattern="^[a-zA-Z]+$"
+            [ngClass]="{
+              'is-invalid':
+                editForm.controls.country.touched &&
+                editForm.controls.country.invalid
+            }"
+          />
+          <div
+            *ngIf="
+              editForm.controls.country.invalid &&
+              editForm.controls.country.touched
+            "
+          >
+            <small
+              *ngIf="editForm.controls.country.errors?.required"
+              class="text-danger"
+              >Country name is required.</small
+            >
+            <small
+              *ngIf="editForm.controls.country.errors?.pattern"
+              class="text-danger"
+              >Country name can only contain alphabets.</small
+            >
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="pincode" class="col-form-label">Pincode :</label>
+        <div class="col-sm-4">
+          <input
+            type="text"
+            class="form-control"
+            formControlName="pincode"
+            pattern="^[0-9]{6}$"
+            [ngClass]="{
+              'is-invalid':
+                editForm.controls.pincode.touched &&
+                editForm.controls.pincode.invalid
+            }"
+          />
+          <div
+            *ngIf="
+              editForm.controls.pincode.invalid &&
+              editForm.controls.pincode.touched
+            "
+          >
+            <small
+              *ngIf="editForm.controls.pincode.errors?.required"
+              class="text-danger"
+              >Pincode is required.</small
+            >
+            <small
+              *ngIf="editForm.controls.pincode.errors?.pattern"
+              class="text-danger"
+              >Pincode can only contain 6 digits.</small
+            >
+          </div>
+        </div>
+      </div>
+    </fieldset>
+
+    <div class="form-group">
+      <label for="trainerpreference" class="col-form-label"
+        >Trainer Preference :</label
+      >
+      <div class="col-sm-8">
+        <select
+          class="form-control"
+          formControlName="trainerpreference"
+          [ngClass]="{
+            'is-invalid':
+              editForm.controls.trainerpreference.touched &&
+              editForm.controls.trainerpreference.invalid
+          }"
+        >
+          <option value="">--SELECT--</option>
+          <option value="male">Male Trainer</option>
+          <option value="female">Female Trainer</option>
+          <option value="none">No Trainer</option>
+        </select>
+      </div>
+      <div
+        *ngIf="
+          editForm.controls.trainerpreference.invalid &&
+          editForm.controls.trainerpreference.touched
+        "
+      >
+        <small
+          *ngIf="editForm.controls.trainerpreference.errors?.required"
+          class="text-danger"
+          >Please select an option.
+        </small>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>Do you need physiotherapist?</label>
+      <div class="form-check">
+        <input
+          formControlName="physiotherapist"
+          class="form-check-input"
+          name="physiotherapist"
+          value="Yes"
+          type="radio"
+        />
+        <label class="form-check-label">Yes</label>
+      </div>
+      <div class="form-check">
+        <input
+          formControlName="physiotherapist"
+          class="form-check-input"
+          value="No"
+          name="physiotherapist"
+          type="radio"
+        />
+        <label class="form-check-label">No</label>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="packages" class="col-form-label">Select Your Package :</label>
+      <div class="col-sm-8">
+        <select
+          class="form-control"
+          formControlName="packages"
+          [ngClass]="{
+            'is-invalid':
+              editForm.controls.packages.touched &&
+              editForm.controls.packages.invalid
+          }"
+        >
+          <option value="">--SELECT--</option>
+          <option value="500">Three Month Package</option>
+          <option value="800">Six Month Package</option>
+          <option value="1200">One Year Package</option>
+        </select>
+      </div>
+      <div
+        *ngIf="
+          editForm.controls.packages.invalid &&
+          editForm.controls.packages.touched
+        "
+      >
+        <small
+          *ngIf="editForm.controls.packages.errors?.required"
+          class="text-danger"
+          >Please select an option.</small
+        >
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group col-md-4">
+        <label for="INR">INR</label>
+        <input formControlName="inr" type="number" class="form-control" />
+      </div>
+      <div class="form-group col-md-4">
+        <label for="paisa">Paisa</label>
+        <input formControlName="paisa" type="number" class="form-control" />
+      </div>
+    </div>
+    <button
+      [disabled]="editForm.status === 'INVALID'"
+      type="submit"
+      class="btn btn-success"
+      data-dismiss="modal"
+    >
+      Submit Form
+    </button>
+  </form>
+</div>

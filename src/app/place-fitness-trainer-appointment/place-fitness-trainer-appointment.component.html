@@ -1,0 +1,447 @@
+<div class="container">
+  <h2>Place fitness Trainer appointment...</h2>
+</div>
+
+<div class="pr-2">
+  <form [formGroup]="fitnessForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="firstname" class="col-form-label">First Name :</label>
+      <div class="col-sm-8">
+        <input
+          autofocus
+          type="text"
+          class="form-control"
+          pattern="^[a-zA-Z]+$"
+          formControlName="firstname"
+          [ngClass]="{
+            'is-invalid':
+              fitnessForm.controls.firstname.touched &&
+              fitnessForm.controls.firstname.invalid
+          }"
+        />
+        <div
+          *ngIf="
+            fitnessForm.controls.firstname.invalid &&
+            fitnessForm.controls.firstname.touched
+          "
+        >
+          <small
+            *ngIf="fitnessForm.controls.firstname.errors?.required"
+            class="text-danger"
+            >Firstname is required.</small
+          >
+          <small
+            *ngIf="fitnessForm.controls.firstname.errors?.pattern"
+            class="text-danger"
+            >Firstname can only contain alphabets.</small
+          >
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="lastname" class="col-form-label">Last Name :</label>
+      <div class="col-sm-8">
+        <input
+          type="text"
+          class="form-control"
+          pattern="^[a-zA-Z]+$"
+          formControlName="lastname"
+          [ngClass]="{
+            'is-invalid':
+              fitnessForm.controls.lastname.touched &&
+              fitnessForm.controls.lastname.invalid
+          }"
+        />
+        <div
+          *ngIf="
+            fitnessForm.controls.lastname.invalid &&
+            fitnessForm.controls.lastname.touched
+          "
+        >
+          <small
+            *ngIf="fitnessForm.controls.lastname.errors?.required"
+            class="text-danger"
+            >Lastname is required.</small
+          >
+          <small
+            *ngIf="fitnessForm.controls.lastname.errors?.pattern"
+            class="text-danger"
+            >Lastname can only contain alphabets.</small
+          >
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="age" class="col-form-label">Age :</label>
+      <div class="col-sm-8">
+        <input
+          type="number"
+          class="form-control"
+          formControlName="age"
+          [ngClass]="{
+            'is-invalid':
+              fitnessForm.controls.age.touched &&
+              fitnessForm.controls.age.invalid
+          }"
+        />
+        <div
+          *ngIf="
+            fitnessForm.controls.age.invalid && fitnessForm.controls.age.touched
+          "
+        >
+          <small
+            *ngIf="fitnessForm.controls.age.errors?.required"
+            class="text-danger"
+            >Age is required.</small
+          >
+          <small *ngIf="fitnessForm.controls.age.errors" class="text-danger"
+            >Please enter age between 18 to 60 years.
+          </small>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="phoneNumber" class="col-form-label">Phone Number</label>
+      <div class="col-sm-8">
+        <input
+          type="number"
+          class="form-control"
+          formControlName="phonenumber"
+          pattern="^\d{10}$"
+          [ngClass]="{
+            'is-invalid':
+              fitnessForm.controls.phonenumber.touched &&
+              fitnessForm.controls.phonenumber.invalid
+          }"
+        />
+        <div
+          *ngIf="
+            fitnessForm.controls.phonenumber.invalid &&
+            fitnessForm.controls.phonenumber.touched
+          "
+        >
+          <small
+            *ngIf="fitnessForm.controls.phonenumber.errors?.required"
+            class="text-danger"
+            >Phone Number is required.</small
+          >
+          <small
+            *ngIf="fitnessForm.controls.phonenumber.errors?.pattern"
+            class="text-danger"
+            >Please enter a 10 digit phone number.</small
+          >
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="email" class="col-form-label">Email :</label>
+      <div class="col-sm-8">
+        <input
+          type="email"
+          class="form-control"
+          formControlName="email"
+          pattern="^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$"
+          [ngClass]="{
+            'is-invalid':
+              fitnessForm.controls.email.touched &&
+              fitnessForm.controls.email.invalid
+          }"
+        />
+        <div
+          *ngIf="
+            fitnessForm.controls.email.invalid &&
+            fitnessForm.controls.email.touched
+          "
+        >
+          <small
+            *ngIf="fitnessForm.controls.email.errors?.required"
+            class="text-danger"
+            >Email is required.</small
+          >
+          <small
+            *ngIf="fitnessForm.controls.email.errors?.pattern"
+            class="text-danger"
+            >Please enter a valid email address.</small
+          >
+        </div>
+      </div>
+    </div>
+
+    <fieldset class="address-box">
+      <div class="form-group">
+        <label for="streetaddress" class="col-form-label"
+          >Street Address :</label
+        >
+        <div class="col-sm-4">
+          <input
+            type="text"
+            class="form-control"
+            formControlName="streetaddress"
+            [ngClass]="{
+              'is-invalid':
+                fitnessForm.controls.streetaddress.touched &&
+                fitnessForm.controls.streetaddress.invalid
+            }"
+          />
+          <div
+            *ngIf="
+              fitnessForm.controls.streetaddress.invalid &&
+              fitnessForm.controls.streetaddress.touched
+            "
+          >
+            <small
+              *ngIf="fitnessForm.controls.streetaddress.errors?.required"
+              class="text-danger"
+              >Street address is required</small
+            >
+          </div>
+        </div>
+
+        <label for="city" class="col-form-label">City :</label>
+        <div class="col-sm-4">
+          <input
+            type="text"
+            class="form-control"
+            formControlName="city"
+            pattern="^[a-zA-Z]+$"
+            [ngClass]="{
+              'is-invalid':
+                fitnessForm.controls.city.touched &&
+                fitnessForm.controls.city.invalid
+            }"
+          />
+          <div
+            *ngIf="
+              fitnessForm.controls.city.invalid &&
+              fitnessForm.controls.city.touched
+            "
+          >
+            <small
+              *ngIf="fitnessForm.controls.city.errors?.required"
+              class="text-danger"
+              >City name is required.</small
+            >
+            <small
+              *ngIf="fitnessForm.controls.city.errors?.pattern"
+              class="text-danger"
+              >City name can only contain alphabets.</small
+            >
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="state" class="col-form-label">State :</label>
+        <div class="col-sm-4">
+          <input
+            type="text"
+            class="form-control"
+            formControlName="state"
+            pattern="^[a-zA-Z]+$"
+            [ngClass]="{
+              'is-invalid':
+                fitnessForm.controls.state.touched &&
+                fitnessForm.controls.state.invalid
+            }"
+          />
+          <div
+            *ngIf="
+              fitnessForm.controls.state.invalid &&
+              fitnessForm.controls.state.touched
+            "
+          >
+            <small
+              *ngIf="fitnessForm.controls.state.errors?.required"
+              class="text-danger"
+              >State name is required.</small
+            >
+            <small
+              *ngIf="fitnessForm.controls.state.errors?.pattern"
+              class="text-danger"
+              >State name can only contain alphabets.</small
+            >
+          </div>
+        </div>
+
+        <label for="country" class="col-form-label">Country :</label>
+        <div class="col-sm-4">
+          <input
+            type="text"
+            class="form-control"
+            formControlName="country"
+            pattern="^[a-zA-Z]+$"
+            [ngClass]="{
+              'is-invalid':
+                fitnessForm.controls.country.touched &&
+                fitnessForm.controls.country.invalid
+            }"
+          />
+          <div
+            *ngIf="
+              fitnessForm.controls.country.invalid &&
+              fitnessForm.controls.country.touched
+            "
+          >
+            <small
+              *ngIf="fitnessForm.controls.country.errors?.required"
+              class="text-danger"
+              >Country name is required.</small
+            >
+            <small
+              *ngIf="fitnessForm.controls.country.errors?.pattern"
+              class="text-danger"
+              >Country name can only contain alphabets.</small
+            >
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="pincode" class="col-form-label">Pincode :</label>
+        <div class="col-sm-4">
+          <input
+            type="text"
+            class="form-control"
+            formControlName="pincode"
+            pattern="^[0-9]{6}$"
+            [ngClass]="{
+              'is-invalid':
+                fitnessForm.controls.pincode.touched &&
+                fitnessForm.controls.pincode.invalid
+            }"
+          />
+          <div
+            *ngIf="
+              fitnessForm.controls.pincode.invalid &&
+              fitnessForm.controls.pincode.touched
+            "
+          >
+            <small
+              *ngIf="fitnessForm.controls.pincode.errors?.required"
+              class="text-danger"
+              >Pincode is required.</small
+            >
+            <small
+              *ngIf="fitnessForm.controls.pincode.errors?.pattern"
+              class="text-danger"
+              >Pincode can only contain 6 digits.</small
+            >
+          </div>
+        </div>
+      </div>
+    </fieldset>
+
+    <div class="form-group">
+      <label for="trainerpreference" class="col-form-label"
+        >Trainer Preference :</label
+      >
+      <div class="col-sm-8">
+        <select
+          class="form-control"
+          formControlName="trainerpreference"
+          [ngClass]="{
+            'is-invalid':
+              fitnessForm.controls.trainerpreference.touched &&
+              fitnessForm.controls.trainerpreference.invalid
+          }"
+        >
+          <option value="">--SELECT--</option>
+          <option value="male">Male Trainer</option>
+          <option value="female">Female Trainer</option>
+          <option value="none">No Trainer</option>
+        </select>
+      </div>
+      <div
+        *ngIf="
+          fitnessForm.controls.trainerpreference.invalid &&
+          fitnessForm.controls.trainerpreference.touched
+        "
+      >
+        <small
+          *ngIf="fitnessForm.controls.trainerpreference.errors?.required"
+          class="text-danger"
+          >Please select an option.
+        </small>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>Do you need physiotherapist?</label>
+      <div class="form-check">
+        <input
+          formControlName="physiotherapist"
+          class="form-check-input"
+          name="physiotherapist"
+          value="Yes"
+          type="radio"
+        />
+        <label class="form-check-label">Yes</label>
+      </div>
+      <div class="form-check">
+        <input
+          formControlName="physiotherapist"
+          class="form-check-input"
+          value="No"
+          name="physiotherapist"
+          type="radio"
+        />
+        <label class="form-check-label">No</label>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="packages" class="col-form-label">Select Your Package :</label>
+      <div class="col-sm-8">
+        <select
+          class="form-control"
+          formControlName="packages"
+          [ngClass]="{
+            'is-invalid':
+              fitnessForm.controls.packages.touched &&
+              fitnessForm.controls.packages.invalid
+          }"
+        >
+          <option value="">--SELECT--</option>
+          <option value="500">Three Month Package - INR 500</option>
+          <option value="800">Six Month Package - INR 800</option>
+          <option value="1200">One Year Package - INR 1200</option>
+        </select>
+      </div>
+      <div
+        *ngIf="
+          fitnessForm.controls.packages.invalid &&
+          fitnessForm.controls.packages.touched
+        "
+      >
+        <small
+          *ngIf="fitnessForm.controls.packages.errors?.required"
+          class="text-danger"
+          >Please select an option.</small
+        >
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group col-md-4">
+        <label for="INR">INR</label>
+        <input formControlName="inr" type="number" class="form-control" />
+      </div>
+      <div class="form-group col-md-4">
+        <label for="paisa">Paisa</label>
+        <input formControlName="paisa" type="number" class="form-control" />
+      </div>
+    </div>
+
+    <button
+      [disabled]="fitnessForm.status === 'INVALID'"
+      type="submit"
+      class="btn btn-success"
+    >
+      Submit Form
+    </button>
+  </form>
+</div>
